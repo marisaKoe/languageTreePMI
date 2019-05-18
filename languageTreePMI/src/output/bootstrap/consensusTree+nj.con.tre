@@ -1,0 +1,17 @@
+#NEXUS 
+
+Begin trees;  [Treefile saved Fri Mar  2 22:55:20 2018]
+[!
+>Consensus of 1000 trees
+>
+>Source of trees from which consensus(es) calculated...
+>
+>Processing TREES block from file:
+>~/workspace/languageTreePMI/src/output/bootstrap/allBootstrapTrees+nj.nwk
+>  Keeping: trees from file (replacing any trees already in memory)
+>  1000 trees read from file
+>
+>  Time used = 0.06 sec (CPU time = 0.05 sec)
+]
+	tree MajRule = [&R] (((((((por,spa)100,ita)69.2,cat)92.9,fra)55.8,lat)71.2,ron)100,(((bre,cym)100,gle)99.9,(((((dan,nor)67.3,swe)100,isl)99.9,(nld,deu)100)94.6,eng)100)54.2,(ell,((((ben,hin)100,((pes,kmr)99.9,pbu)98.7)72,oss)99.9,hye)89.9)54,sqi,((((hrv,slv)97.8,bul)58.8,(((ukr,bel)89.4,rus)98.7,(ces,slk)100)69,pol)100,(lit,lav)100)100)100;
+end;
