@@ -213,7 +213,7 @@ if __name__ == '__main__':
       
       
     ##################do bootstrap#########################
-    ##do the traditional bootstrap with the similarity matrix, we dont have to compute the similiarites again, which saves a lot of run time
+    ##do the traditional bootstrap with the similarity matrix, we don't have to compute the similarities again, which saves a lot of run time
     ##the matrices are directly written in a folder
     #traditional_bootstrap.create_bootstrapMtx(nelex_dict, overall_simMtr)
     traditional_bootstrap.create_bootstrapMtx(overall_simMtr)

@@ -18,9 +18,6 @@ def reconstruct_consensus(treeFile, contreeFile):
     
     ##returning a string representing the current working directory
     treePath = os.getcwd()+"/"+treeFile
-    #print treePath
-    #conFile = treeFile.split("/")
-    #contree = conFile[0]+"/"+conFile[1]+"/consensus+nj.con.tre"
     
     print contreeFile
     ##create the skript for paup and save the trees in a file
@@ -32,7 +29,6 @@ def reconstruct_consensus(treeFile, contreeFile):
     q;
     end;
     """
-    #print paupSkript
     ##open the paup script
     with open(wdir+'/paupCommands.nex','w') as f:
         ##write

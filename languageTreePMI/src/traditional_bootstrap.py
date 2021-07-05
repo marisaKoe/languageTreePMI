@@ -35,9 +35,6 @@ def create_bootstrapMtx(simMtr):
     ##get all the language pairs in a list
     lang_pair_list = simMtr.keys()
     number_concepts = len(simMtr.values()[0])
-    #print number_concepts
-    ##get the number of concepts to create the indice list
-    #number_concpets = len(nelex_dict.values()[0])
     
     ##initialize the overall bootstrap dict
     bootstrap_dict = defaultdict()
@@ -49,7 +46,6 @@ def create_bootstrapMtx(simMtr):
         #idx_list = np.random.choice(np.arange(10), 10, replace=True)
         ##initialize the distance dict for each sample
         sample_dist_dict = defaultdict(lambda: defaultdict(float))
-        #print "index list run", number_sample, idx_list
         ##for each pair in the list of language pairs
         for pair in lang_pair_list:
             ##create the matrix
@@ -68,13 +64,8 @@ def create_bootstrapMtx(simMtr):
                     bootstrap_array[idx_idxList][jdx_idxList] = matrix[idx_word][jdx_word]
             
 
-            
-            #print bootstrap_array
             ##get the distance between a pair of languages and set it in the distance matrix
             dist_score, ranks = c.ldistNWPV(bootstrap_array, maxSim, minSim)
-            #print "dist score", dist_score
-            #stop = timeit.default_timer()
-            #print stop-start
             sample_dist_dict[pair[0]][pair[1]] = dist_score
             sample_dist_dict[pair[1]][pair[0]] = dist_score
              
@@ -132,9 +123,7 @@ if __name__ == '__main__':
         newSimArray = list()
         for s in simArray:
             s1 = s.split()
-            #print "s1", s1
             newList = [float(i) for i in s1]
-            #print "newList", newList
             if len(newList) !=0:
                 newSimArray.append(newList)
         simAr = np.array(newSimArray)
@@ -143,12 +132,7 @@ if __name__ == '__main__':
     
     
     create_bootstrapMtx(simMtx)
-    
-    
-    
-    
-    
-    #create_bootstrapMtx()
+
     
     
     

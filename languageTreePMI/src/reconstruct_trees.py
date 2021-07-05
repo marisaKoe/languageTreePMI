@@ -42,9 +42,7 @@ def reconstruct_bootstrap_trees(in_path_mtx, out_nj, out_fastme):
     :param out_nj:the filename for all nj trees
     :param out_fastme:the filename for all fastme trees
     '''
-    #print "in reconstruct trees"
     list_matrices = glob.glob(in_path_mtx)
-    #print list_matrices
     for f in list_matrices:
 
         t = utils.read_table(f, skip=1, row_names=1)

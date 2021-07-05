@@ -3,11 +3,6 @@ Created on 15.12.2017
 
 @author: marisa
 
-TODO:
-
-speed up computation. 
-+ parallel computing
-+ compute NW score with numpy? - is pairwise2 from Bio to slow?
 '''
 
 import os, codecs, timeit
@@ -63,8 +58,6 @@ def compute_dm(nelex_dict, lodict):
         ##get the word lists for each language
         l1List = nelex_dict[l1]
         l2List = nelex_dict[l2]
-        #print l1, l1List
-        #print l2, l2List
 
         ##compute the similarity matrix between the wordlists
         simMtr = c.compute_similarity(l1List, l2List, lodict, gp1, gp2)
@@ -74,10 +67,7 @@ def compute_dm(nelex_dict, lodict):
         simMtr_2 = np.copy(simMtr)
         ##computes the distance between the languages
         dist_score, ranks = c.ldistNWPV(simMtr_2, maxSim, minSim)
-        #dist_score = compute_ldistNWPV(simMtr_2)
-        #print lang_pair, dist_score
-        #print l1, l2, dist_score
-        
+      
         ##fill the dictionary with the values
         dist_dict[l1][l2] = dist_score 
         dist_dict[l2][l1]=dist_score
@@ -162,8 +152,6 @@ def compute_similarity_matrix(l1List,l2List,lodict,gp1=gp1,gp2=gp2):
     :param gp2:gap penalty (extending gap)
     :return simMtr: similarity matrix for the language lists
     '''
-    #print l1List
-    #print l2List
     ##give each word in the lists to the NW function and create a similarity matrix
     sim_matrix = np.array([[scoreNW(x,y,lodict,gp1=gp1,gp2=gp2) for x in l1List] for y in l2List])
       
@@ -179,9 +167,6 @@ def compute_ldistNWPV(simMtr):
     :param simMtr:similarity matrix from compute_similarity_matrix
     :return: distance between the languages
     '''
-    #print "in ldistNWPV"
-    #simMtr_2 = np.copy(simMtr)
-    #print "copied matrix"
     ##get the diagonal of the matrix
     dg = np.diag(simMtr)
     ##tests element-wise if there are non nan, get the subset
@@ -191,15 +176,11 @@ def compute_ldistNWPV(simMtr):
     #print "filled diagonals"
     ##compromise the matrix to a list/vector
     cmpr = simMtr[np.isnan(simMtr)==False]
-    #print "cmpr"
       
     ##gives for each word in the diagonal (synonyms) a rank
     ranks = np.array([stats.gmean(1.+np.arange(sum(cmpr>x),1.+sum(cmpr>=x))) for x in dg],np.double)
-    #print "ranks" ##dauert am laengsten, kann es in c geschrieben werden??? -> Johannes
     stc = np.mean(-np.log(ranks/(1+len(cmpr))))
     sim = (stc-1)*np.sqrt(len(dg))
-    #print "sim"
-    #print (maxSim-sim)/(maxSim-minSim)
     return (maxSim-sim)/(maxSim-minSim)
 
 ###############writing################################
